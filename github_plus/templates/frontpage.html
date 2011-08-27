@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {% if user.is_anonymous %}
+        Please, sign in, using your GitHub account.
+        <form action="{% url login %}" method="POST">
+            <input type="submit" value="Sign In"/>
+            {% csrf_token %}
+        </form>
+    {% else %}
+        Hello, {{ user }}.
+        <form action="{% url logout %}" method="POST">
+            <input type="submit" value="Sign Out"/>
+            {% csrf_token %}
+        </form>
+    {% endif %}
+{% endblock %}
